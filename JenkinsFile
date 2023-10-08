@@ -22,10 +22,10 @@ pipeline{
                 script {
                     def dockerRun = 'docker compose up -d --no-color --wait'
                 }
-                sshagent(['docker-compose']) {
-                    sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.11.108 ${dockerRun}"
+                sshagent(['docker-cont']) {
+                    sh '''ssh -o StrictHostKeyChecking=no ubuntu@172.31.11.108 ${dockerRun}'''
                 }
-                sh 'docker compose ps'
+                sh 'docker-compose ps'
             }
         }
         stage('Run tests against the container') {
