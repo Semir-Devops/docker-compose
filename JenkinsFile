@@ -11,7 +11,7 @@ pipeline{
                 sh '''
                     docker version
                     docker info
-                    docker compose version 
+                    docker-compose version 
                     curl --version
                     jq --version
                 '''
@@ -19,7 +19,9 @@ pipeline{
         }
         stage('Start container') {
             steps {
-                def dockerRun = 'docker compose up -d --no-color --wait'
+                script {
+                    def dockerRun = 'docker compose up -d --no-color --wait'
+                }
                 sshagent(['docker-compose']) {
                     sh "ssh -o StrictHostKeyChecking=no ubuntu@172.31.11.108 ${dockerRun}"
                 }
