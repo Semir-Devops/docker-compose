@@ -25,7 +25,8 @@ I will explain the <i>JenkinsFile</i> Build steps:
   - <b>Git Checkout:</b> This will clone this current repo that contains the docker-compose.yml file using Git plugin within Jenkins.
   - <b>Verify Tooling:</b> This will verify that the machine has the necessary tools (packages) to run Docker-compose and run the applications.</br>
      (Docker for containerizing, docker-compose for multi-container running, curl to return output, jq to parse output into JSON format)
-  - <b>Start Container:</b> This deploys the docker-compose file by using ssh to connect to the machine and deploying the container on the machine
+  - <b>Start Container:</b> This deploys the docker-compose file by using ssh to connect to the machine & deploying the container on the machine<br/>
+    The 'docker-compose up' command runs the entire <i>docker-compose.yml</i> file from the machine you are using
   - <b>Run tests against the container:</b> Run the curl command with jq format processor to output echo server
 
 <hr/>
