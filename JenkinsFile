@@ -20,10 +20,10 @@ pipeline{
         stage('Start container') {
             steps {
                 script {
-                    def dockerRun = 'docker compose up -d --no-color --wait'
+                    def dockerRun = 'docker compose up -d --wait'
                 }
                 sshagent(['docker-cont']) {
-                    sh '''ssh -o StrictHostKeyChecking=no ubuntu@172.31.11.108 ${dockerRun}'''
+                    sh '''ssh -o StrictHostKeyChecking=no ubuntu@<private-ip-address-of-machine> ${dockerRun}'''
                 }
                 sh 'docker-compose ps'
             }
